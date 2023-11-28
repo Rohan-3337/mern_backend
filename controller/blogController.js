@@ -23,7 +23,7 @@ module.exports.CreateBlog = async(req,res) => {
 module.exports.FetchAllBlog = async(req, res) =>{
     let success = false;
     try{
-        const allblog = await BlogSchema.find().populate("user");
+        const allblog = await BlogSchema.find().populate("user").maxTimeMS(20000);;
         console.log(allblog);
         success = true;
         return res.json({success,blogs: allblog});
